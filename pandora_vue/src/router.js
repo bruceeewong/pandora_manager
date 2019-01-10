@@ -14,22 +14,22 @@ export default new Router({
     {
       path: '/photo',
       name: 'photo',
-      component: () => import(/* webpackChunkName: "about" */ './views/Photo.vue')
+      component: () => import(/* webpackChunkName: "about" */ './views/MyPhoto.vue')
     },
     {
       path: '/video',
       name: 'video',
-      component: () => import(/* webpackChunkName: "about" */ './views/Video.vue')
+      component: () => import(/* webpackChunkName: "about" */ './views/MyVideo.vue')
     },
     {
       path: '/music',
       name: 'music',
-      component: () => import(/* webpackChunkName: "about" */ './views/Music.vue')
+      component: () => import(/* webpackChunkName: "about" */ './views/MyMusic.vue')
     },
     {
       path: '/doc',
       name: 'doc',
-      component: () => import(/* webpackChunkName: "about" */ './views/Doc.vue')
+      component: () => import(/* webpackChunkName: "about" */ './views/MyDoc.vue')
     }
   ]
 })

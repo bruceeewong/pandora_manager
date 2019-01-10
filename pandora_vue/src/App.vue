@@ -2,7 +2,7 @@
   <div id="app">
     <router-view/>
     <upload-btn></upload-btn>
-    <tabs />
+    <tabs :tabList="tabList" />
   </div>
 </template>
 
@@ -15,6 +15,32 @@ export default {
   components: {
     Tabs,
     UploadBtn
+  },
+  data () {
+    return {
+      tabList: [
+        {
+          name: '照片',
+          url: '/photo'
+        },
+        {
+          name: '视频',
+          url: '/video'
+        },
+        {
+          name: '首页',
+          url: '/'
+        },
+        {
+          name: '音乐',
+          url: '/music'
+        },
+        {
+          name: '文档',
+          url: '/doc'
+        }
+      ]
+    }
   }
 }
 </script>

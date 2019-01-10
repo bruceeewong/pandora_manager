@@ -2,12 +2,15 @@
   <div class="bottom-tabs">
     <ul class="tabs-wrap">
       <li
-        v-for="(item, index) in tabList"
+        v-for="(tab, index) in tabList"
         :key="index"
-        @click="switchPage(item.url, index)"
-        :class="{ 'active' : (isActive === index) ? true : false}"
       >
-        {{ item.name }}
+        <a
+          class="tab-link"
+          :href="tab.url"
+        >
+          {{ tab.name }}
+        </a>
       </li>
     </ul>
   </div>
@@ -15,7 +18,7 @@
 
 <script>
 export default {
-  name: 'Tabs',
+  name: 'EditTabs',
   props: {
     tabList: {
       type: Array,
@@ -43,12 +46,11 @@ export default {
   position: fixed;
   left: 0;
   bottom: 0;
-  z-index: 9998;
+  z-index: 9999;
   width: 100%;
   height: 50px;
   line-height: 50px;
-  background: $vue-color;
-  color: #fff;
+  background: #fff;
   box-shadow: 0px -2px 5px rgba(1,1,1,0.1);
 }
 ul {
@@ -66,9 +68,11 @@ ul {
   width: 100%;
   margin: 0 auto;
 }
-.active {
-  background: #fff;
+.tab-link {
+  text-decoration: none;
   color: $vue-color;
-  border-top: 1px solid $vue-color;
+}
+a:nth-child(3) {
+  color: red;
 }
 </style>

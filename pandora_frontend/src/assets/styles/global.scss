@@ -1,0 +1,8 @@
+$vue-color: #42b983;
+
+@mixin flex ($direction: row, $j: center, $a: center, $isWrap: nowrap) {
+  display: flex;
+  flex-flow: $direction $isWrap;
+  justify-content: $j;
+  align-items: $a;
+}

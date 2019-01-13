@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view />
+    <router-view @refreshFileList="refreshFileList"/>
     <upload-btn @showUploadPanel="showUploadPanel()"></upload-btn>
     <upload-panel v-if="isShowUploadPanel" @closeUploadPanel="closeUploadPanel()"></upload-panel>
     <tabs :tabList="tabList" />
@@ -11,6 +11,9 @@
 import Tabs from '@/components/Tabs.vue'
 import UploadBtn from '@/components/UploadBtn.vue'
 import UploadPanel from '@/components/UploadPanel.vue'
+
+import store from '@/store'
+import url from './api/ajax/url.js'
 
 export default {
   name: 'app',
@@ -47,12 +50,33 @@ export default {
     }
   },
   methods: {
+    refreshFileList () {
+      let xhr = new XMLHttpRequest()
+      xhr.open('get', url.getAllFiles, true)
+      xhr.send(null)
+
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            store.commit('refreshFileList', {
+              allFileList: JSON.parse(xhr.responseText)
+            })
+          } else {
+            alert('get all files failed: ' + xhr.responseText)
+          }
+        }
+      }
+    },
     showUploadPanel () {
       this.isShowUploadPanel = true
     },
     closeUploadPanel () {
       this.isShowUploadPanel = false
+      this.refreshFileList()
     }
+  },
+  created () {
+    this.refreshFileList()
   }
 }
 </script>

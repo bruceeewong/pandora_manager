@@ -52,6 +52,8 @@ import FileInfoPanel from './FileInfoPanel.vue'
 // components
 import EditTabs from './EditTabs.vue'
 
+import url from '../api/ajax/url.js'
+
 export default {
   name: 'fileList',
   components: {
@@ -70,9 +72,9 @@ export default {
         {
           name: '查看详情'
         },
-        {
-          name: '下载'
-        },
+        // {
+        //   name: '下载'
+        // },
         {
           name: '删除'
         },
@@ -117,7 +119,19 @@ export default {
       this.isShowInfo = true
     },
     downloadFile () {},
-    deleteFile () {},
+    deleteFile () {
+      let xhr = new XMLHttpRequest()
+      xhr.open('post', url.deleteFile, true)
+      xhr.send(this.selectedFile.id)
+
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            this.$emit('refreshFileList')
+          }
+        }
+      }
+    },
     cancelSelect () {
       this.selectedFile = null
     },
@@ -125,9 +139,9 @@ export default {
       switch (index) {
         case 0: this.checkoutFile()
           break
-        case 1: break
-        case 2: break
-        case 3: this.cancelSelect()
+        case 1: this.deleteFile()
+          break
+        case 2: this.cancelSelect()
           break
         default: break
       }

@@ -1,50 +1,37 @@
 <template>
   <div>
     <my-header :header-title="headerTitle"></my-header>
-    <file-list :fileList="photoList"></file-list>
+    <file-list :fileList="photoList" @refreshFileList="refreshFileList"></file-list>
   </div>
 </template>
 
 <script>
 import MyHeader from '../components/MyHeader.vue'
 import FileList from '../components/FileList.vue'
+import store from '@/store'
 
 export default {
   name: 'MyPhoto',
+  computed: {
+    photoList () {
+      return store.state.allFileList.filter(file => {
+        return /(jpe?g|png|gif)$/.test(file.type)
+      })
+    }
+  },
   data () {
     return {
-      headerTitle: 'Photo',
-      photoList: [
-        {
-          id: '1',
-          name: '苦行僧',
-          author: 'GAI',
-          type: 'jpg',
-          uploadTime: '2019-01-11',
-          path: './assets/1.mp3'
-        },
-        {
-          id: '2',
-          name: '时间是金',
-          author: '王闪火',
-          type: 'png',
-          uploadTime: '2019-01-11',
-          path: './assets/1.mp3'
-        },
-        {
-          id: '3',
-          name: '小人物',
-          author: '艾热',
-          type: 'gif',
-          uploadTime: '2019-01-11',
-          path: './assets/1.mp3'
-        }
-      ]
+      headerTitle: 'Photos'
     }
   },
   components: {
     MyHeader,
     FileList
+  },
+  methods: {
+    refreshFileList () {
+      this.$emit('refreshFileList')
+    }
   }
 }
 </script>

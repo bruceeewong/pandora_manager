@@ -1,50 +1,37 @@
 <template>
   <div>
     <my-header :header-title="headerTitle"></my-header>
-    <file-list :fileList="musicList"></file-list>
+    <file-list :fileList="musicList" @refreshFileList="refreshFileList"></file-list>
   </div>
 </template>
 
 <script>
 import MyHeader from '../components/MyHeader.vue'
 import FileList from '../components/FileList.vue'
+import store from '@/store'
 
 export default {
   name: 'MyMusic',
+  computed: {
+    musicList () {
+      return store.state.allFileList.filter(file => {
+        return /(mp3|wav|flac)$/.test(file.type)
+      })
+    }
+  },
   data () {
     return {
-      headerTitle: 'Music',
-      musicList: [
-        {
-          id: '1',
-          name: '苦行僧',
-          author: 'GAI',
-          type: 'mp3',
-          uploadTime: '2019-01-11',
-          path: './assets/1.mp3'
-        },
-        {
-          id: '2',
-          name: '时间是金',
-          author: '王闪火',
-          type: 'mp3',
-          uploadTime: '2019-01-11',
-          path: './assets/1.mp3'
-        },
-        {
-          id: '3',
-          name: '小人物',
-          author: '艾热',
-          type: 'mp3',
-          uploadTime: '2019-01-11',
-          path: './assets/1.mp3'
-        }
-      ]
+      headerTitle: 'Musics'
     }
   },
   components: {
     MyHeader,
     FileList
+  },
+  methods: {
+    refreshFileList () {
+      this.$emit('refreshFileList')
+    }
   }
 }
 </script>

@@ -3,7 +3,7 @@
     <div class="info-wrap">
       <div class="info-panel">
         <div class="info-header">
-          <h3>{{ file.author }} - {{ file.name }}.{{ file.type }}</h3>
+          <h3>{{ file.name }}.{{ file.type }}</h3>
         </div>
         <div class="info-content">
           <p class="info-type"
@@ -70,13 +70,13 @@ export default {
 @import '../assets/styles/global.scss';
 
 .info-page {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   width: 100%;
-  height: 667px;
+  height: 100%;;
   background: {
     color: rgba(1, 1, 1, 0.6)
   };
@@ -109,6 +109,13 @@ export default {
   p {
     margin-bottom: 10px;
   }
+}
+.info-type {
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .btn-close {
   display: block;

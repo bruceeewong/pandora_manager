@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import url from '../api/ajax/url.js'
 
 export default {
   name: 'UploadPanel',
@@ -72,7 +73,7 @@ export default {
       fd.append('fileUpload', this.fileUpload)
 
       let xhr = new XMLHttpRequest()
-      xhr.open('POST', 'http://localhost:3000/api/upload', true)
+      xhr.open('POST', url.uploadFile, true)
       xhr.send(fd)
 
       xhr.onreadystatechange = () => {
@@ -109,13 +110,13 @@ export default {
 @import '../assets/styles/global.scss';
 
 .upload-page {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   width: 100%;
-  height: 667px;
+  height: 100%;
   background: {
     color: rgba(1, 1, 1, 0.6);
   };

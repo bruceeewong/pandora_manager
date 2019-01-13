@@ -15,7 +15,7 @@ export default {
   computed: {
     docList () {
       return store.state.allFileList.filter(file => {
-        return /(txt|docx?)$/.test(file.type)
+        return /(txt|docx|pdfnp?)$/.test(file.type)
       })
     }
   },

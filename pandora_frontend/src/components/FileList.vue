@@ -129,6 +129,8 @@ export default {
           if (xhr.status === 200) {
             this.$emit('refreshFileList')
           }
+          this.selectedFile = null
+          this.isShowInfo = false
         }
       }
     },
@@ -190,7 +192,7 @@ ul {
   @include flex(row, flex-start);
 }
 .file-header {
-  width: 80px;
+  width: 20%;
   height: $h100;
   @include flex(column, space-around);
 
@@ -200,7 +202,7 @@ ul {
   }
 }
 .file-content {
-  width: 100%;
+  width: 80%;
   height: $h100;
   box-sizing: border-box;
   padding: 10px;
@@ -212,6 +214,10 @@ ul {
   }
 }
 .file-name {
+  width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   line-height: 16px;
   text-align: left;
   font-size: 16px;

@@ -104,6 +104,14 @@ export default {
   margin-bottom: 20px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+
+  > h3 {
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 .info-content {
   p {

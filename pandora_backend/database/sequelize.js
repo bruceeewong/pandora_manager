@@ -50,7 +50,6 @@ const deleteFileWithId = async (fileId) => {
                 id: fileId
             }
         })
-        console.log(fileToDelete[0].destroy)
         return fileToDelete[0].destroy()
     } catch (e) {
         throw(e)

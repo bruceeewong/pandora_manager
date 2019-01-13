@@ -52,6 +52,7 @@ export default {
   methods: {
     refreshFileList () {
       let xhr = new XMLHttpRequest()
+      console.log(url.getAllFiles)
       xhr.open('get', url.getAllFiles, true)
       xhr.send(null)
 

@@ -10,11 +10,11 @@ const fn_upload = async (ctx, next) => {
 
     // 暂时不存文件实体
     //创建可读流
-    // const reader = fs.createReadStream(fileUpload.path)
+    const reader = fs.createReadStream(fileUpload.path)
     let filePath = path.resolve(__dirname, '../public/upload/') + `/${fileUpload.name}`
     //创建可写流
-    // const upStream = fs.createWriteStream(filePath)
-    // reader.pipe(upStream)
+    const upStream = fs.createWriteStream(filePath)
+    reader.pipe(upStream)
 
     let
         nowDate = new Date(),
